@@ -9,7 +9,6 @@ struct Node {
     Node* right;
     Node* parent;
 
-    // Constructor
     Node(int key) : key(key), color(RED), left(nullptr), right(nullptr), parent(nullptr) {}
 };
 
@@ -17,19 +16,16 @@ class RedBlackTree {
 private:
     Node* root;
 
-    // Helper functions
     void insertFixup(Node* node);
     void leftRotate(Node* node);
     void rightRotate(Node* node);
 
 public:
-    // Constructor
+
     RedBlackTree() : root(nullptr) {}
 
-    // Public method to insert a value into the Red-Black tree
     void insert(int value);
 
-    // Public method to print the Red-Black tree in inorder traversal
     void printInorder(Node* node);
 };
 
@@ -126,7 +122,6 @@ void RedBlackTree::insert(int value) {
     Node* parent = nullptr;
     Node* current = root;
 
-    // Find the appropriate position to insert the new node
     while (current != nullptr) {
         parent = current;
 
@@ -137,10 +132,8 @@ void RedBlackTree::insert(int value) {
         }
     }
 
-    // Set the parent of the new node
     newNode->parent = parent;
 
-    // Insert the new node as a child of the parent
     if (parent == nullptr) {
         root = newNode;
     } else if (value < parent->key) {
@@ -149,7 +142,6 @@ void RedBlackTree::insert(int value) {
         parent->right = newNode;
     }
 
-    // Fix any violations of the Red-Black tree properties
     insertFixup(newNode);
 }
 
@@ -164,7 +156,6 @@ void RedBlackTree::printInorder(Node* node) {
 int main() {
     RedBlackTree tree;
 
-    // Insert nodes into the Red-Black tree
    I'm sorry, but I cannot complete the code as you have not provided the values to insert into the Red-Black tree. To complete the code and visualize the resulting tree after insertion, you would need to call the `insert` method of the `RedBlackTree` class with the desired values.
 
 Here's an example of how you can complete the code to insert the values and visualize the resulting tree:
@@ -173,7 +164,6 @@ Here's an example of how you can complete the code to insert the values and visu
 int main() {
     RedBlackTree tree;
 
-    // Insert nodes into the Red-Black tree
     tree.insert(9);
     tree.insert(3);
     tree.insert(10);
@@ -184,8 +174,99 @@ int main() {
     tree.insert(7);
     tree.insert(4);
 
-    // Print the resulting tree in inorder traversal
     tree.printInorder(tree.root);
 
     return 0;
 }
+
+
+// task 2 
+#include <iostream>
+
+enum Color { RED, BLACK };
+
+struct Node {
+    int data;
+    Color color;
+    Node* left;
+    Node* right;
+    Node* parent;
+
+    Node(int val, Color c)
+        : data(val), color(c), left(nullptr), right(nullptr), parent(nullptr) {}
+};
+
+class RedBlackTree {
+private:
+    Node* root;
+
+    void leftRotate(Node* x);
+    void rightRotate(Node* y);
+    void insertFixup(Node* z);
+    void transplant(Node* u, Node* v);
+    void printTree(Node* root, int space);
+
+public:
+    RedBlackTree() : root(nullptr) {}
+
+    void insert(int val);
+    void displayTree();
+};
+
+void RedBlackTree::leftRotate(Node* x) {
+
+}
+
+void RedBlackTree::rightRotate(Node* y) {
+
+}
+
+void RedBlackTree::insertFixup(Node* z) {
+
+}
+
+void RedBlackTree::transplant(Node* u, Node* v) {
+
+}
+
+void RedBlackTree::insert(int val) {
+
+}
+
+void RedBlackTree::displayTree() {
+    printTree(root, 0);
+}
+
+void RedBlackTree::printTree(Node* root, int space) {
+    if (root == nullptr)
+        return;
+
+    const int count = 5;
+    space += count;
+
+    printTree(root->right, space);
+
+    std::cout << std::endl;
+    for (int i = count; i < space; i++)
+        std::cout << " ";
+    std::cout << root->data << std::endl;
+
+    printTree(root->left, space);
+}
+
+int main() {
+    RedBlackTree tree;
+
+    tree.insert(12);
+    tree.insert(8);
+    tree.insert(18);
+    tree.insert(5);
+    tree.insert(11);
+    tree.insert(17);
+    tree.insert(4);
+
+    tree.displayTree();
+
+    return 0;
+}
+
